@@ -3,74 +3,107 @@
   <head>
     <meta charset="utf-8">
     <title>BMO Arcade</title>
-    <link href="https://fonts.googleapis.com/css?family=Monoton|Open+Sans:400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Monoton|Open+Sans:400,700|Lato|Arimo" rel="stylesheet">
     <link rel="stylesheet" href="css/juego.css">
-
   </head>
   <body>
     <div class="container">
         <div class="col-40">
-    
             <div id="titulo">
               <h1>Rompecabezas</h1>
             </div>
             <div id="instrucciones">
-              <h3 class="titulo">Instrucciones</h3>
+              <h3 class="sub-titulo title-color">Instrucciones</h3>
               <ul id="lista-instrucciones">
               </ul>
             </div>
             <div id="objetivo">
-              <h3 class="titulo">Objetivo</h3>
+              <h3 class="sub-titulo title-color">Objetivo</h3>
               <div class="texto-centrado">
-                <img src="images/final.png" alt="Imagen final">
+                <img src="images/final0.png" id="imagenObjetivo" alt="Imagen final">
               </div>
             </div>
             <div id="ultimo-mov">
-              <h3 class="titulo">Ultimo movimiento:</h3>
-              <!--<button id="btnCompletar" onclick="completarJuego()">Completar juego</button> -->
+              <h3 class="sub-titulo title-color">Ultimo movimiento:</h3>
               <div id="flecha" class="texto-centrado">
                   
               </div>
+            </div>
+
+            <div id="botonera">  
+              <button class="btn" onclick="mezclarPiezas(30)"><i class="fas fa-dice"></i><span> Mezclar piezas</span></button>
+              <button class="btn" id="btnCambiarImagen" onclick="elegirImagen()" data-modal = "escondido"><i class="fas fa-images"></i><span>Cambiar imagen</span></button>
             </div>
             
           </div>
           <div class="col-60">
             <div id="juego">
                 <div class="pieza" id="pieza1" >
-                    <img class="imagen" src="images/10.jpg" alt="pieza1">
+                    <img src="images/10.jpg" class="pieza1">
                   </div>
-                  
                   <div class="pieza" id="pieza2">
-                      <img class="imagen" src="images/20.jpg" alt="pieza2">
+                      <img src="images/20.jpg" class="pieza2">
                   </div>
                   <div class="pieza" id="pieza3">
-                      <img class="imagen" src="images/30.jpg" alt="pieza3">
+                      <img src="images/30.jpg" class="pieza3">
                   </div>
                   <div class="pieza" id="pieza4">
-                      <img class="imagen" src="images/40.jpg" alt="pieza4">
+                      <img src="images/40.jpg" class="pieza4">
                   </div>
                   <div class="pieza" id="pieza5">
-                      <img class="imagen" src="images/50.jpg" alt="pieza5">
+                      <img src="images/50.jpg" class="pieza5">
                   </div>
                   <div class="pieza" id="pieza6">
-                      <img class="imagen" src="images/60.jpg" alt="pieza6">
+                      <img src="images/60.jpg" class="pieza6">
                   </div>
                   <div class="pieza" id="pieza7">
-                      <img class="imagen" src="images/70.jpg" alt="pieza7">
+                      <img src="images/70.jpg" class="pieza7">
                   </div>
                   <div class="pieza" id="pieza8">
-                      <img class="imagen" src="images/80.jpg" alt="pieza8">
+                      <img src="images/80.jpg" class="pieza8">
                   </div>
                   <div class="pieza" id="pieza9"></div>
             </div>
           </div>
 
     </div>
+
+    <div id="elegirImagen" class="ventana-modal escondido contenido-centrado">
+      
+      <div>
+        <span onclick="cerrarModal('elegirImagen')" class="btnCerrar"><i class="far fa-window-close"></i></span>
+        <div class="contenido-modal">
+          <h4 class="sub-titulo title-color">Elige uno de los Rompecabezas:</h4>
+          <div class="imagenes">
+            <img src="images/final00.png" onclick="cambiarImagen('GF')" alt="Gravity Falls">
+            <img src="images/final0.png" onclick="cambiarImagen('HDA')"alt="Hora de Aventura">
+            <p class="title-color">Proximamente agregaremos más!</p>
+          </div>
+          
+        </div>
+        
+      </div>
+
+    </div>
+
+    <div id="cartelGanador" class="ventana-modal escondido contenido-centrado">
+      
+      <div>
+        <span onclick="cerrarModal('cartelGanador')" class="btnCerrar"><i class="far fa-window-close"></i></span>
+        <div class="contenido-modal contenido-centrado flex-columns">
+          <h1 class="titulo texto-centrado title-color">Haz ganado!</h1>
+          <p class="title-color">Espero que te hayas divertido jugando! :)</p>
+          <button class="btn" onclick="volverAJugar()"><i class="fas fa-redo"></i><span> Volver a jugar!</span></button>
+        </div>
+        
+      </div>
+
+    </div>
     
     <div id="footer">
-        
-      
+      <p>Rompecabezas, desarrollado por Aaron Saban</p>
+    </div>
     </div>
     <script src="js/juego.js"></script>
   </body>

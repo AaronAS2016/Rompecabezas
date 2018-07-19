@@ -1,5 +1,6 @@
 // Arreglo que contiene las intrucciones del juego 
-var instrucciones = ["Mueva las flechas", "Intruccion 2", "Intruccion 3"];
+var instrucciones = ["Utiliza las flechas del teclado para mover  las piezas", 
+                      "Ordena las piezas para formar la imagen final"];
 // Arreglo para ir guardando los movimientos que se vayan realizando
 var movimientos = [];
 
@@ -35,14 +36,6 @@ function mostrarInstrucciones(instrucciones) {
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
 y utilice actualizarUltimoMovimiento para mostrarlo en pantalla */
 
-function completarJuego(){
-  console.log("entro");
-  for(i = 0; i < grilla.length; i++){
-    for(j = 0; j < grilla[i].length; j++){
-        grilla[i][j] = grillaGanadora[i][j];
-    }
-  }
-}
 
 function agregarUltimaDireccion(direccion){
   movimientos.push(direccion);
@@ -68,7 +61,7 @@ function chequearSiGano() {
 
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
 function mostrarCartelGanador() {
-  alert("ganaste el juego");
+  modificarModal("cartelGanador", false)
 }
 
 /* Función que intercambia dos posiciones en la grilla.
@@ -107,26 +100,26 @@ function moverEnDireccion(direccion) {
 
   // Mueve pieza hacia la abajo, reemplazandola con la blanca
   if (direccion === codigosDireccion.ABAJO) {
-    nuevaFilaPiezaVacia = filaVacia + 1;
+    nuevaFilaPiezaVacia = filaVacia - 1;
     nuevaColumnaPiezaVacia = columnaVacia;
   }
     
   // Mueve pieza hacia arriba, reemplazandola con la blanca
   else if (direccion === codigosDireccion.ARRIBA) {
-    nuevaFilaPiezaVacia = filaVacia - 1;
+    nuevaFilaPiezaVacia = filaVacia + 1;
     nuevaColumnaPiezaVacia = columnaVacia;
   }
     
   // Mueve pieza hacia la derecha, reemplazandola con la blanca
   else if (direccion === codigosDireccion.DERECHA) {
     nuevaFilaPiezaVacia = filaVacia;
-    nuevaColumnaPiezaVacia = columnaVacia + 1;
+    nuevaColumnaPiezaVacia = columnaVacia - 1;
   }
     
   // Mueve pieza hacia la izquierda, reemplazandola con la blanca
   else if (direccion === codigosDireccion.IZQUIERDA) {
     nuevaFilaPiezaVacia = filaVacia;
-    nuevaColumnaPiezaVacia = columnaVacia - 1;
+    nuevaColumnaPiezaVacia = columnaVacia + 1;
   }
 
   /* A continuación se chequea si la nueva posición es válida, si lo es, se intercambia. 
@@ -142,6 +135,60 @@ function moverEnDireccion(direccion) {
     }
 }
 
+
+function elegirImagen(){
+  modificarModal("elegirImagen", false);
+}
+
+function cambiarImagen(id){
+  switch(id){
+    case 'GF':
+      cambiarImagenes("00");
+      break;
+    case 'HDA':
+      cambiarImagenes("0")
+      break;
+  }
+}
+
+function volverAJugar(){
+  cerrarModal("cartelGanador");
+  mezclarPiezas(30);
+}
+
+function cambiarImagenes(cantidadDecimales){ //La cantidad de decimales lo utilizo para nombrar las imagenes de las piezas, por ejemplo las de Gravity Falls arrancan de 100 en 100 el nombre del archivo, cuando las de Hora de aventura son de 10 en 10.
+  for(i = 0; i < grilla.length; i++){
+    for(j = 0; j < grilla[i].length; j++){
+        if(grilla[i][j] < 9 ){
+          var imagen = document.getElementsByClassName(`pieza${grilla[i][j]}`); 
+          var ruta = `images/${grilla[i][j]}${cantidadDecimales}.jpg`;
+          imagen[0].setAttribute('src', ruta);
+        }
+    }
+  }
+  document.getElementById("imagenObjetivo").setAttribute('src',`images/final${cantidadDecimales}.png`);
+  mezclarPiezas(30);
+  cerrarModal("elegirImagen");
+}
+
+function cerrarModal(id){
+  modificarModal(id, true);
+
+}
+
+function modificarModal (id, status){
+  if(status == false){
+    var ventana = document.getElementById(id);
+    ventana.classList.toggle("descubierto");
+    ventana.classList.remove("escondido");
+  }
+
+  if(status == true){
+    var ventana = document.getElementById(id);
+    ventana.classList.toggle("escondido");
+    ventana.classList.remove("descubierto");
+  }
+}
 
 //////////////////////////////////////////////////////////
 ////////A CONTINUACIÓN FUNCIONES YA IMPLEMENTADAS.////////
@@ -277,7 +324,10 @@ presiona el usuario */
 function iniciar() {
     mostrarInstrucciones(instrucciones);
     mezclarPiezas(30);
-    capturarTeclas();
+    setTimeout(function(){
+      capturarTeclas();
+    }, 3000);
+    
 }
 
 // Ejecutamos la función iniciar

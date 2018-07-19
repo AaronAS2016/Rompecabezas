@@ -4,13 +4,10 @@
 }
 body {
   font-family: 'Arimo', sans-serif;
-  width: 940px;
+  width: 60%;
   color: #231900;
   margin: 5% auto;
-  min-height: 100%;
-  background-image: url(../images/adventure.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #E84A5F;
 }
 ul {
   padding-left: 0;
@@ -18,55 +15,58 @@ ul {
 }
 li {
   padding: 5px 0;
+  margin-left: 30px;
+  font-size: 1.1em;
   animation: fadein 5s;
 }
 li::before {
   content: "• ";
-  color: #231900;
+  color: #e84a5f;
 }
 .container {
-  background: #fff;
-  box-shadow: 1px 1px .5px #ffcc00;
+  background:#fafafa;
+  display: flex;
   border-radius: 8px;
 }
 .col-40, .col-60 {
-  display: table-cell;
-  margin: 0;
-  height: 600px;
-  vertical-align: top;
+  display: flex;
 }
 .col-40 {
   width: 40%;
-  
-  padding: 30px;
-  color: #000;
+  margin: 20px 0 0 20px;
+  flex-direction: column;
 }
-
 .col-60 {
   width: 60%;
-
 }
 
-#flecha{
-  font-size: 60px;
-}
-
-.titulo{
-  font-size:1.3em;
-  text-align: left;
+.title-color{
+  color:#E84A5F;
 }
 
 #titulo h1{
-  padding: 10px;
+  padding: 5px;
   font-size: 2em;
+  margin: 10px;
   text-align: center;
-  width:100%;
+  border-radius: 8px;
   text-transform: uppercase;
   font-family: 'Monoton';
-  background: #ffcc00;
-  color: #231900;
+  background: #E84A5F;
+  color: #ffffff;
   font-weight: bold;
+  user-select: none;
+}
 
+.titulo{
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.sub-titulo{
+  font-size:1.5em;
+  font-family: 'Lato';
+  font-weight: bold;
 }
 
 .texto-centrado {
@@ -79,26 +79,173 @@ li::before {
 }
 
 #juego{
-  width: 600px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
   background: #E84A5F;
+  position: relative;
 }
+
 .pieza{
   width:33.33%;
   height: 33.33%;
   float: left;
 }
-.imagen{
+.pieza img{
   border: 1px solid #000;
   width:100%;
+  height: 100%;
 }
 
 #objetivo img{
-  width:150px;
+  width:250px;
   margin: 0 auto;
 }
+
+#ultimo-mov{
+  padding: 20px 20px 20px 0;
+}
+
+#flecha{
+  font-size: 60px;
+}
+
+#botonera{
+  width: 80%;
+  margin: 40px auto;
+  display: flex;
+  justify-content: space-around;
+} 
+
+.btn{
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  max-width: 150px;
+  padding: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  background: #E84A5F;
+  outline: none;
+  transition: all .3s ease;
+}
+
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn i{
+  font-size: 1.8em;
+  margin-right: 15px;
+}
+
+.btn span{
+  font-size: 1.4em;
+  font-family: 'Lato';
+}
+
+.btn:hover, #botonera .btn:active{
+  background: #fff;
+  border:1px solid #e84a5f;
+  transform: scale(1.05);
+  transform-origin: top left;
+  color: #E84A5F;
+} 
+
+
+.ventana-modal{
+  position: fixed;
+  background:rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 100%;
+  transition: all .4s ease-in;
+  height: 100%;
+} 
+
+.ventana-modal > div{
+  position: relative;
+  width: 900px;
+  height: 600px;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.ventana-modal .contenido-modal{
+  margin: 20px;
+  width: 100%;
+  height: 100%;
+
+}
+
+.escondido{
+  opacity: 0;
+  z-index: -1;
+ 
+}
+.descubierto{
+  opacity: 1;
+  z-index: 3;
+}
+
+.imagenes img{
+  max-width: 200px;
+  margin: 10px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.imagenes img:hover{
+  transform: scale(1.1);
+}
+
+.btnCerrar{
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  padding: 5px;
+  font-size: 2em;
+  color: #231900;
+  top: 0;
+  transition: all .3s ease;
+}
+.btnCerrar:hover{
+  color: #e84a5f;
+  transform: scale(1.1);
+}
+
+.contenido-centrado{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-columns{
+  flex-direction: column;
+}
+
+.flex-columns > * {
+  margin-top: 20px;
+}
+
 
 @keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+
+@media screen and (max-width: 1920px) {
+  body{
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 1268px) {
+  body{
+    width: 90%;
+  }
+}
+
+
